@@ -1,20 +1,11 @@
 services:
-  frontend:
-    build:
-      context: frontend
-      target: builder
-    ports:
-      - 4200:4200
-    volumes:
-      - ./frontend:/project
-      - /project/node_modules
   backend:
     build:
-      context: backend
+      context: .
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/usr/src/app
+      - ./usr:/src/app
       - /usr/src/app/node_modules
   db:
     image: postgres
