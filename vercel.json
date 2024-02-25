@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "memocraft-api",
+  "name": "ucsm-api",
   "buildCommand": "npm start",
   "installCommand": "npm install",
   "builds": [
