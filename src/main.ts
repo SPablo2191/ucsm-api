@@ -1,13 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as dotenv from 'dotenv';
+import { ConfigService } from '@nestjs/config';
 import 'reflect-metadata';
 
 async function bootstrap() {
-  dotenv.config();
   const app = await NestFactory.create(AppModule);
-  const PORT = process.env.PORT || 3000;
+  const configService = app.get<ConfigService>(ConfigService);
+  const PORT = configService.get('PORT') || 3000;
 
   const options = new DocumentBuilder()
     .setTitle('Documentation | Best API')
@@ -18,6 +18,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
+
   await app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
   });
