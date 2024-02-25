@@ -15,9 +15,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
       database: this.configService.get('DB_NAME') || 'postgres',
       autoLoadEntities: true,
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      ssl: false,
     };
   }
 }
