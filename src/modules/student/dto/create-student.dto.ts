@@ -12,6 +12,13 @@ import { CreateDtoType } from 'src/core/services/base.interface.service';
 
 export class CreateStudentDto implements CreateDtoType {
   @ApiProperty({
+    description: 'Id Student',
+    type: String,
+  })
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+  @ApiProperty({
     description: 'The first name of the student',
     minLength: 2,
     type: String,
