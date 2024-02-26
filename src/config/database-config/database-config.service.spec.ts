@@ -51,9 +51,7 @@ describe('DatabaseConfigService', () => {
       database: 'test_db',
       autoLoadEntities: true,
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      ssl: false,
     });
   });
 });

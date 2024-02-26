@@ -5,6 +5,7 @@ import { Student } from './entities/student.entity';
 import { StudentMapper } from './student.mapper';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { StudentStatus } from 'src/shared/types/status.types';
+import { UpdateStudentDto } from './dto/update-student.dto';
 
 @Injectable()
 export class StudentRepository {
@@ -31,7 +32,7 @@ export class StudentRepository {
 
   async updateStudent(
     id: string,
-    studentDTO: CreateStudentDto,
+    studentDTO: UpdateStudentDto,
   ): Promise<Student> {
     studentDTO.id = id;
     const updatestudent = this.mapper.dtoToEntity(studentDTO);
