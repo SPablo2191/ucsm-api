@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
+import {
+  BaseService,
+  CreateDtoType,
+  UpdateDtoType,
+} from 'src/core/services/base.interface.service';
 
 @Injectable()
-export class StudentService {
-  create(createStudentDto: CreateStudentDto) {
-    return 'This action adds a new student';
+export class StudentService implements BaseService {
+  findAll(): Promise<CreateDtoType[]> {
+    throw new Error('Method not implemented.');
+  }
+  create(item: CreateDtoType): Promise<CreateDtoType> {
+    console.log(item);
+    throw new Error('Method not implemented.');
   }
 
-  findAll() {
-    return `This action returns all student`;
+  findOne(id: string): Promise<UpdateDtoType> {
+    console.log(id);
+    throw new Error('Method not implemented.');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} student`;
+  update(id: string, item: UpdateDtoType): Promise<UpdateDtoType> {
+    console.log(id, item);
+    throw new Error('Method not implemented.');
   }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} student`;
+  delete(id: string): Promise<UpdateDtoType> {
+    console.log(id);
+    throw new Error('Method not implemented.');
   }
 }

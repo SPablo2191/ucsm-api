@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { StudentStatus } from '../../../shared/types/status.types';
 @Entity()
 export class Student {
   @PrimaryGeneratedColumn('uuid')
@@ -26,4 +26,6 @@ export class Student {
   identification_document: string;
   @Column({ type: 'varchar' })
   password: string;
+  @Column({ type: 'enum', enum: StudentStatus, default: StudentStatus.ACTIVE })
+  status: string;
 }

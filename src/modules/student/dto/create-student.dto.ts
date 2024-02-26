@@ -8,8 +8,9 @@ import {
 } from 'class-validator';
 import { dateRegEx } from 'src/core/consts/date.regex';
 import { passwordRegEx } from 'src/core/consts/password.regex';
+import { CreateDtoType } from 'src/core/services/base.interface.service';
 
-export class CreateStudentDto {
+export class CreateStudentDto implements CreateDtoType {
   @ApiProperty({
     description: 'The first name of the student',
     minLength: 2,
