@@ -28,4 +28,7 @@ export class Student {
   password: string;
   @Column({ type: 'enum', enum: StudentStatus, default: StudentStatus.ACTIVE })
   status: string;
+  constructor(partial: Partial<Student>) {
+    Object.assign(this, partial);
+  }
 }

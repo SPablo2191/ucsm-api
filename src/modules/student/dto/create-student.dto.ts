@@ -54,7 +54,7 @@ export class CreateStudentDto implements CreateDtoType {
   @Matches(dateRegEx, {
     message: 'Birth date must be in YYYY-MM-DD format',
   })
-  birth_date: string;
+  birth_date: Date;
 
   @ApiProperty({
     description: 'The email address of the student',
@@ -91,4 +91,7 @@ export class CreateStudentDto implements CreateDtoType {
     one special character`,
   })
   password: string;
+  constructor(partial: Partial<CreateStudentDto>) {
+    Object.assign(this, partial);
+  }
 }
