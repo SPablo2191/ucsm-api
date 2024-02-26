@@ -20,18 +20,18 @@ export class StudentService implements BaseService<CreateStudentDto> {
     return this.mapper.entityToDto(newStudent);
   }
 
-  findOne(id: string): Promise<CreateStudentDto> {
-    console.log(id);
-    throw new Error('Method not implemented.');
+  async findOne(id: string): Promise<CreateStudentDto> {
+    const student: Student = await this.studentsRepository.getstudentById(id);
+    return this.mapper.entityToDto(student);
   }
 
-  update(id: string, item: CreateStudentDto): Promise<CreateStudentDto> {
-    console.log(id, item);
-    throw new Error('Method not implemented.');
+  async update(id: string, item: CreateStudentDto): Promise<CreateStudentDto> {
+    const updateStudent = await this.studentsRepository.updateStudent(id, item);
+    return this.mapper.entityToDto(updateStudent);
   }
 
-  delete(id: string): Promise<CreateStudentDto> {
-    console.log(id);
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<CreateStudentDto> {
+    await this.studentsRepository.deleteStudent(id);
+    return this.findOne(id);
   }
 }
