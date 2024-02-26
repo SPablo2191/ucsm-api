@@ -4,7 +4,6 @@ import { DeleteResult, Repository } from 'typeorm';
 import { Student } from './entities/student.entity';
 import { StudentMapper } from './student.mapper';
 import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
 import { StudentStatus } from 'src/shared/types/status.types';
 
 @Injectable()
@@ -32,7 +31,7 @@ export class StudentRepository {
 
   async updateStudent(
     id: string,
-    studentDTO: UpdateStudentDto,
+    studentDTO: CreateStudentDto,
   ): Promise<Student> {
     studentDTO.id = id;
     const updatestudent = this.mapper.dtoToEntity(studentDTO);

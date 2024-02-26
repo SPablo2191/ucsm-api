@@ -1,10 +1,7 @@
-export interface BaseService {
-  findAll: () => Promise<CreateDtoType[]>;
-  create: (item: CreateDtoType) => Promise<UpdateDtoType>;
-  findOne: (id: string) => Promise<UpdateDtoType>;
-  update: (id: string, item: UpdateDtoType) => Promise<UpdateDtoType>;
-  delete: (id: string) => Promise<UpdateDtoType>;
+export interface BaseService<T> {
+  findAll: () => Promise<T[]>;
+  create: (item: T) => Promise<T>;
+  findOne: (id: string) => Promise<T>;
+  update: (id: string, item: T) => Promise<T>;
+  delete: (id: string) => Promise<T>;
 }
-
-export interface CreateDtoType {}
-export interface UpdateDtoType {}
