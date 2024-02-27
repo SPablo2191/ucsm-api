@@ -35,6 +35,7 @@ describe('StudentController', () => {
         address: '123 Main St',
         identification_document: '123456789',
         password: 'Password123!',
+        role: 'STUDENT@ROLE',
       };
       const expectedResult = createStudentDto;
 
@@ -78,6 +79,7 @@ describe('StudentController', () => {
         address: '123 Main St',
         identification_document: '123456789',
         password: 'Password123!',
+        role: 'STUDENT@ROLE',
       };
       const updatedStudent = { id: '1', first_name: 'Jane' };
       jest.spyOn(service, 'update').mockResolvedValue(updatedStudent);

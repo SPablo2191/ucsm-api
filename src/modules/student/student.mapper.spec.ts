@@ -24,6 +24,7 @@ describe('StudentMapper', () => {
         address: '123 Main St',
         identification_document: 'ABC123',
         password: 'Password123',
+        role: 'STUDENT@ROLE',
       };
 
       const result: Student = mapper.dtoToEntity(createStudentDto);
@@ -92,6 +93,7 @@ describe('StudentMapper', () => {
         identification_document: 'ABC123',
         password: 'Password123',
         status: 'ACTIVE',
+        role: 'STUDENT@ROLE',
       };
 
       const result: CreateStudentDto | UpdateStudentDto =
@@ -126,6 +128,7 @@ describe('StudentMapper', () => {
         identification_document: 'XYZ789',
         password: 'Password456',
         status: 'ACTIVE',
+        role: 'STUDENT@ROLE',
       };
 
       const result: UpdateStudentDto = mapper.entityToDto(student);

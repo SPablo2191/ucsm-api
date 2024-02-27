@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { StudentStatus } from '../../../shared/types/status.types';
+import { RoleTypes } from 'src/shared/types/roles.types';
 @Entity()
 export class Student {
   @PrimaryGeneratedColumn('uuid')
@@ -28,6 +29,8 @@ export class Student {
   password: string;
   @Column({ type: 'enum', enum: StudentStatus, default: StudentStatus.ACTIVE })
   status: string;
+  @Column({ type: 'enum', enum: RoleTypes, default: RoleTypes.STUDENT })
+  role: string;
   constructor(partial: Partial<Student>) {
     Object.assign(this, partial);
   }

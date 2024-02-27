@@ -1,8 +1,6 @@
 export enum RoleTypes {
   ADMIN = 'ADMIN@ROLE',
-  CREATOR = 'CREATOR@ROLE',
-  SIMPLETON = 'SIMPLETON@ROLE',
-  AFFILIATE = 'AFFILIATE@ROLE',
+  STUDENT = 'STUDENT@ROLE',
 }
 
 export interface Role {
@@ -16,6 +14,4 @@ function createRoleSymbol(roleObject: Role | RoleTypes): Role {
 }
 
 export const ADMIN_ROLE = createRoleSymbol(RoleTypes.ADMIN);
-export const CREATOR_ROLE = createRoleSymbol(RoleTypes.CREATOR);
-export const SIMPLETON_ROLE = createRoleSymbol(RoleTypes.SIMPLETON);
-export const AFFILIATE_ROLE = createRoleSymbol(RoleTypes.AFFILIATE);
+export const STUDENT_ROLE = createRoleSymbol(RoleTypes.STUDENT);

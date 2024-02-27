@@ -97,6 +97,13 @@ export class CreateStudentDto {
     one special character`,
   })
   password: string;
+  @ApiProperty({
+    description: 'Role of user',
+    type: String,
+  })
+  @IsString()
+  @IsNotEmpty()
+  role: string;
   constructor(partial: Partial<CreateStudentDto>) {
     Object.assign(this, partial);
   }
