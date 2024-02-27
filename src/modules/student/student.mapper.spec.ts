@@ -34,8 +34,8 @@ describe('StudentMapper', () => {
       expect(result.middle_name).toBe('Adam');
       expect(result.last_name).toBe('Doe');
       expect(result.second_last_name).toBe('Smith');
-      expect(result.birth_date).toEqual(new Date('2000-01-01'));
-      expect(result.register_date).toEqual(new Date('2022-01-01'));
+      expect(result.birth_date).toEqual(new Date('01/01/2000'));
+      expect(result.register_date).toEqual(new Date('01/01/2022'));
       expect(result.email).toBe('john@example.com');
       expect(result.phone_number).toBe('1234567890');
       expect(result.address).toBe('123 Main St');
@@ -50,7 +50,7 @@ describe('StudentMapper', () => {
         middle_name: 'Eve',
         last_name: 'Smith',
         second_last_name: 'Doe',
-        birth_date: new Date('2001-01-01'),
+        birth_date: new Date('01/01/2001'),
         email: 'jane@example.com',
         phone_number: '9876543210',
         address: '456 Elm St',
@@ -66,8 +66,8 @@ describe('StudentMapper', () => {
       expect(result.middle_name).toBe('Eve');
       expect(result.last_name).toBe('Smith');
       expect(result.second_last_name).toBe('Doe');
-      expect(result.birth_date).toEqual(new Date('2001-01-01'));
-      expect(result.register_date).toEqual(new Date('2023-01-01'));
+      expect(result.birth_date).toEqual(new Date('01/01/2000'));
+      expect(result.register_date).toEqual(new Date('01/01/2023'));
       expect(result.email).toBe('jane@example.com');
       expect(result.phone_number).toBe('9876543210');
       expect(result.address).toBe('456 Elm St');
@@ -84,8 +84,8 @@ describe('StudentMapper', () => {
         middle_name: 'Adam',
         last_name: 'Doe',
         second_last_name: 'Smith',
-        birth_date: new Date('2000-01-01'),
-        register_date: new Date('2022-01-01'),
+        birth_date: new Date('01/01/2000'),
+        register_date: new Date('01/01/2022'),
         email: 'john@example.com',
         phone_number: '1234567890',
         address: '123 Main St',
@@ -103,7 +103,7 @@ describe('StudentMapper', () => {
       expect(result.middle_name).toBe('Adam');
       expect(result.last_name).toBe('Doe');
       expect(result.second_last_name).toBe('Smith');
-      expect(result.birth_date).toEqual(new Date('2000-01-01'));
+      expect(result.birth_date).toEqual(new Date('01/01/2000'));
       expect(result.email).toBe('john@example.com');
       expect(result.phone_number).toBe('1234567890');
       expect(result.address).toBe('123 Main St');
@@ -118,8 +118,8 @@ describe('StudentMapper', () => {
         middle_name: 'Eve',
         last_name: 'Smith',
         second_last_name: 'Doe',
-        birth_date: new Date('2001-01-01'),
-        register_date: new Date('2023-01-01'),
+        birth_date: new Date('01/01/2001'),
+        register_date: new Date('01/01/2023'),
         email: 'jane@example.com',
         phone_number: '9876543210',
         address: '456 Elm St',
@@ -136,7 +136,7 @@ describe('StudentMapper', () => {
       expect(result.middle_name).toBe('Eve');
       expect(result.last_name).toBe('Smith');
       expect(result.second_last_name).toBe('Doe');
-      expect(result.birth_date).toEqual(new Date('2001-01-01'));
+      expect(result.birth_date).toEqual(new Date('01/01/2001'));
       expect(result.email).toBe('jane@example.com');
       expect(result.phone_number).toBe('9876543210');
       expect(result.address).toBe('456 Elm St');
