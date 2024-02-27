@@ -5,7 +5,7 @@ export class Installment {
   id: string;
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   total_amount: number;
-  @Column({ type: 'date' })
+  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   register_date: Date;
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   paid_amount: number;
