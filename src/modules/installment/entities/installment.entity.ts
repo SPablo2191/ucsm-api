@@ -16,6 +16,7 @@ export class Installment {
   code: string;
   @ManyToOne(() => Debt, (debt) => debt.installments)
   debt: Debt;
-  @Column({ type: 'varchar' })
-  debt_id: string;
+  constructor(partial: Partial<Installment>) {
+    Object.assign(this, partial);
+  }
 }

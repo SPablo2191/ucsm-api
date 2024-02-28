@@ -1,5 +1,13 @@
 import { Installment } from 'src/modules/installment/entities/installment.entity';
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Student } from 'src/modules/student/entities/student.entity';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 @Entity()
 export class Debt {
   @PrimaryGeneratedColumn('uuid')
@@ -12,4 +20,10 @@ export class Debt {
   updated_date: Date;
   @OneToMany(() => Installment, (installment) => installment.debt)
   installments: Installment[];
+  @OneToOne(() => Student)
+  @JoinColumn()
+  student: Student;
+  constructor(partial: Partial<Debt>) {
+    Object.assign(this, partial);
+  }
 }
