@@ -3,6 +3,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsString,
+  IsUUID,
   Matches,
   MinLength,
 } from 'class-validator';
@@ -12,9 +13,9 @@ import { passwordRegEx } from 'src/core/consts/password.regex';
 export class CreateStudentDto {
   @ApiProperty({
     description: 'Id Student',
-    type: String,
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
-  @IsString()
+  @IsUUID()
   @IsNotEmpty()
   id: string;
   @ApiProperty({
