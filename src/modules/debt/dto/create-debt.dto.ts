@@ -7,7 +7,8 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { CreateInstallmentDto } from 'src/modules/installment/dto/create-installment.dto';
-import { CreateStudentDto } from 'src/modules/student/dto/create-student.dto';
+import { UpdateDebtDto } from './update-debt.dto';
+import { Student } from 'src/modules/student/entities/student.entity';
 export class CreateDebtDto {
   @ApiProperty({
     description: 'ID of the debt',
@@ -38,9 +39,9 @@ export class CreateDebtDto {
   installments: CreateInstallmentDto[];
 
   @ApiProperty({ description: 'Student associated with the debt' })
-  @Type(() => CreateStudentDto)
-  student: CreateStudentDto;
-  constructor(partial: Partial<CreateDebtDto>) {
+  @Type(() => Student)
+  student: Student;
+  constructor(partial: Partial<CreateDebtDto | UpdateDebtDto>) {
     Object.assign(this, partial);
   }
 }
