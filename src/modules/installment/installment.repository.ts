@@ -4,9 +4,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { InstallmentMapper } from './installment.mapper';
 import { Repository } from 'typeorm';
 import { BaseRepository } from 'src/core/classes/repository.base';
+import { UpdateInstallmentDto } from './dto/update-installment.dto';
 
 @Injectable()
-export class InstallmentRepository implements BaseRepository<Installment> {
+export class InstallmentRepository
+  implements BaseRepository<Installment | UpdateInstallmentDto>
+{
   constructor(
     @InjectRepository(Installment)
     private installmentsRepository: Repository<Installment>,
@@ -24,7 +27,10 @@ export class InstallmentRepository implements BaseRepository<Installment> {
   getById(id: string): Promise<Installment> {
     return this.installmentsRepository.findOne({ where: { id: id } });
   }
-  update(id: string, item: Installment): Promise<Installment> {
+  update(
+    id: string,
+    item: Installment | UpdateInstallmentDto,
+  ): Promise<Installment> {
     item.id = id;
     const updateInstallment = this.mapper.dtoToEntity(item);
     return this.installmentsRepository.save(updateInstallment);
