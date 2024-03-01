@@ -10,7 +10,9 @@ import {
 import { InstallmentService } from './installment.service';
 import { CreateInstallmentDto } from './dto/create-installment.dto';
 import { UpdateInstallmentDto } from './dto/update-installment.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Installment')
 @Controller('installment')
 export class InstallmentController {
   constructor(private readonly installmentService: InstallmentService) {}
