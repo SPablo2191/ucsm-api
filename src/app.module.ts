@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseConfigService } from './config/database-config/database-config.service';
 import * as dotenv from 'dotenv';
 import { StudentModule } from './modules/student/student.module';
+import { DebtModule } from './modules/debt/debt.module';
+import { InstallmentModule } from './modules/installment/installment.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -21,6 +23,8 @@ const ENV = process.env.NODE_ENV;
       envFilePath: `.env.${ENV}`,
     }),
     StudentModule,
+    DebtModule,
+    InstallmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
