@@ -23,10 +23,7 @@ export class BuildingRepository
   getById(id: string): Promise<Building> {
     return this.itemsRepository.findOne({ where: { id: id } });
   }
-  update(
-    id: string,
-    item: Building | UpdateBuildingDto,
-  ): Promise<Building | UpdateBuildingDto> {
+  update(id: string, item: UpdateBuildingDto | Building): Promise<Building> {
     item.id = id;
     const updatePlan = this.mapper.dtoToEntity(item);
     return this.itemsRepository.save(updatePlan);
