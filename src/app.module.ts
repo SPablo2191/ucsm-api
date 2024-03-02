@@ -9,6 +9,7 @@ import { StudentModule } from './modules/student/student.module';
 import { DebtModule } from './modules/debt/debt.module';
 import { InstallmentModule } from './modules/installment/installment.module';
 import { PlanModule } from './modules/plan/plan.module';
+import { ProfessorModule } from './modules/professor/professor.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -27,6 +28,7 @@ const ENV = process.env.NODE_ENV;
     DebtModule,
     InstallmentModule,
     PlanModule,
+    ProfessorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
