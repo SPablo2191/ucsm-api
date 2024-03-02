@@ -5,4 +5,7 @@ export class Building {
   id: string;
   @Column({ type: 'varchar', length: 100 })
   name: string;
+  constructor(partial: Partial<Building>) {
+    Object.assign(this, partial);
+  }
 }
