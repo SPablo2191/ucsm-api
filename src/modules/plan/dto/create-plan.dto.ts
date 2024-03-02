@@ -19,4 +19,7 @@ export class CreatePlanDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+  constructor(partial: Partial<CreatePlanDto>) {
+    Object.assign(this, partial);
+  }
 }

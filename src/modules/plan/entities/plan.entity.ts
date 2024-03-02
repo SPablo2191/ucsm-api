@@ -9,4 +9,7 @@ export class Plan {
   end_year: Date;
   @Column({ type: 'varchar', length: 100 })
   name: string;
+  constructor(partial: Partial<Plan>) {
+    Object.assign(this, partial);
+  }
 }
