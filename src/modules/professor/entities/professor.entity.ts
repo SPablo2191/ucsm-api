@@ -16,4 +16,7 @@ export class Professor {
   email: string;
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   register_date: Date;
+  constructor(partial: Partial<Professor>) {
+    Object.assign(this, partial);
+  }
 }
