@@ -9,6 +9,8 @@ export class Plan {
   end_year: Date;
   @Column({ type: 'varchar', length: 100 })
   name: string;
+  @Column({ type: 'date' })
+  register_date: Date;
   constructor(partial: Partial<Plan>) {
     Object.assign(this, partial);
   }
