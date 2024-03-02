@@ -1,7 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
 export class CreatePlanDto {
+  @ApiProperty({
+    description: 'ID of the plan',
+    example: '123e4567-e89b-12d3-a456-426614174000',
+  })
+  @IsUUID()
+  id: string;
   @ApiProperty({ description: 'Start year of the plan', example: '2022-01-01' })
   @IsDateString()
   @IsNotEmpty()
@@ -19,6 +25,12 @@ export class CreatePlanDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+  @ApiProperty({
+    description: 'Date when the plan was registered',
+    example: '2022-02-24',
+  })
+  @IsDateString()
+  register_date: Date;
   constructor(partial: Partial<CreatePlanDto>) {
     Object.assign(this, partial);
   }
