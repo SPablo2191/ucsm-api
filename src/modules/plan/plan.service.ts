@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
+import { BaseService } from 'src/core/services/base.interface.service';
 import { CreatePlanDto } from './dto/create-plan.dto';
 import { UpdatePlanDto } from './dto/update-plan.dto';
+import { Plan } from './entities/plan.entity';
+import { PlanRepository } from './plan.repository';
+import { PlanMapper } from './plan.mapper';
 
 @Injectable()
-export class PlanService {
-  create(createPlanDto: CreatePlanDto) {
-    return 'This action adds a new plan';
+export class PlanService implements BaseService<CreatePlanDto | UpdatePlanDto> {
+  constructor(
+    private itemsRepository: PlanRepository,
+    private mapper: PlanMapper,
+  ) {}
+  async findAll(): Promise<(CreatePlanDto | UpdatePlanDto)[]> {
+    const items: Plan[] = await this.itemsRepository.getAll();
+    return items.map((record) => this.mapper.entityToDto(record));
   }
-
-  findAll() {
-    return `This action returns all plan`;
+  async create(item: CreatePlanDto): Promise<CreatePlanDto | UpdatePlanDto> {
+    const newItem: Plan = await this.itemsRepository.create(item);
+    return this.mapper.entityToDto(newItem);
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} plan`;
+  async findOne(id: string): Promise<CreatePlanDto | UpdatePlanDto> {
+    const item: Plan = await this.itemsRepository.getById(id);
+    return this.mapper.entityToDto(item);
   }
-
-  update(id: number, updatePlanDto: UpdatePlanDto) {
-    return `This action updates a #${id} plan`;
+  async update(id: string, item: UpdatePlanDto): Promise<UpdatePlanDto> {
+    const updateItem = await this.itemsRepository.update(id, item);
+    return this.mapper.entityToDto(updateItem);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} plan`;
+  async delete(id: string): Promise<CreatePlanDto | UpdatePlanDto> {
+    await this.itemsRepository.delete(id);
+    return this.findOne(id);
   }
 }

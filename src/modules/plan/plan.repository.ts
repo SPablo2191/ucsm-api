@@ -23,10 +23,7 @@ export class PlanRepository implements BaseRepository<Plan | UpdatePlanDto> {
   getById(id: string): Promise<Plan> {
     return this.itemsRepository.findOne({ where: { id: id } });
   }
-  update(
-    id: string,
-    item: Plan | UpdatePlanDto,
-  ): Promise<Plan | UpdatePlanDto> {
+  update(id: string, item: Plan | UpdatePlanDto): Promise<Plan> {
     item.id = id;
     const updatePlan = this.mapper.dtoToEntity(item);
     return this.itemsRepository.save(updatePlan);
