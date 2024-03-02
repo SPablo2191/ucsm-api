@@ -10,7 +10,8 @@ import {
 import { BuildingService } from './building.service';
 import { CreateBuildingDto } from './dto/create-building.dto';
 import { UpdateBuildingDto } from './dto/update-building.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('building')
 @Controller('building')
 export class BuildingController {
   constructor(private readonly buildingService: BuildingService) {}
