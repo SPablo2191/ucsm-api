@@ -10,4 +10,8 @@ export class Semester {
   start_date: Date;
   @Column({ type: 'date' })
   end_date: Date;
+
+  constructor(partial: Partial<Semester>) {
+    Object.assign(this, partial);
+  }
 }
