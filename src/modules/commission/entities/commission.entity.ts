@@ -19,4 +19,7 @@ export class Commission {
   @OneToOne(() => CommissionSchedule)
   @JoinColumn()
   commission_schedule: CommissionSchedule;
+  constructor(partial: Partial<Commission>) {
+    Object.assign(this, partial);
+  }
 }
