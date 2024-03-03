@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { CreateClassroomDto } from './dto/create-classroom.dto';
 import { UpdateClassroomDto } from './dto/update-classroom.dto';
+import { ClassroomRepository } from './classroom.repository';
+import { ClassroomMapper } from './classroom.mapper';
+import { Classroom } from './entities/classroom.entity';
+import { BaseService } from 'src/core/services/base.interface.service';
 
 @Injectable()
-export class ClassroomService {
-  create(createClassroomDto: CreateClassroomDto) {
-    return 'This action adds a new classroom';
+export class ClassroomService
+  implements BaseService<CreateClassroomDto | UpdateClassroomDto>
+{
+  constructor(
+    private itemsRepository: ClassroomRepository,
+    private mapper: ClassroomMapper,
+  ) {}
+  async findAll(): Promise<(CreateClassroomDto | UpdateClassroomDto)[]> {
+    const items: Classroom[] = await this.itemsRepository.getAll();
+    return items.map((record) => this.mapper.entityToDto(record));
   }
-
-  findAll() {
-    return `This action returns all classroom`;
+  async create(
+    item: CreateClassroomDto,
+  ): Promise<CreateClassroomDto | UpdateClassroomDto> {
+    const newItem: Classroom = await this.itemsRepository.create(item);
+    return this.mapper.entityToDto(newItem);
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} classroom`;
+  async findOne(id: string): Promise<CreateClassroomDto | UpdateClassroomDto> {
+    const item: Classroom = await this.itemsRepository.getById(id);
+    return this.mapper.entityToDto(item);
   }
-
-  update(id: number, updateClassroomDto: UpdateClassroomDto) {
-    return `This action updates a #${id} classroom`;
+  async update(
+    id: string,
+    item: UpdateClassroomDto,
+  ): Promise<UpdateClassroomDto> {
+    const updateItem = await this.itemsRepository.update(id, item);
+    return this.mapper.entityToDto(updateItem);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} classroom`;
+  async delete(id: string): Promise<CreateClassroomDto | UpdateClassroomDto> {
+    await this.itemsRepository.delete(id);
+    return this.findOne(id);
   }
 }
