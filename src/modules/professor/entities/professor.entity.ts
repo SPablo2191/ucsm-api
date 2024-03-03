@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Commission } from 'src/modules/commission/entities/commission.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Professor {
@@ -18,6 +19,8 @@ export class Professor {
   image_url: string;
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   register_date: Date;
+  @OneToMany(() => Commission, (commission) => commission.professor)
+  commissions: Commission[];
   constructor(partial: Partial<Professor>) {
     Object.assign(this, partial);
   }

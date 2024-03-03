@@ -1,5 +1,12 @@
 import { Building } from 'src/modules/building/entities/building.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Commission } from 'src/modules/commission/entities/commission.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 @Entity()
 export class Classroom {
   @PrimaryGeneratedColumn('uuid')
@@ -8,6 +15,8 @@ export class Classroom {
   name: string;
   @ManyToOne(() => Building, (building) => building.classrooms)
   building: Building;
+  @OneToMany(() => Commission, (commission) => commission.classroom)
+  commissions: Commission[];
   constructor(partial: Partial<Classroom>) {
     Object.assign(this, partial);
   }
