@@ -58,6 +58,12 @@ export class CreateProfessorDto {
   email: string;
 
   @ApiProperty({
+    description: 'image url of the professor',
+    example: 'https://example.com/image.jpg',
+  })
+  @IsEmail()
+  image_url: string;
+  @ApiProperty({
     description: 'Date when the professor was registered',
     example: '2022-02-24',
   })

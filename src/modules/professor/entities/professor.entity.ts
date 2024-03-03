@@ -14,6 +14,8 @@ export class Professor {
   second_last_name: string;
   @Column({ type: 'varchar', length: 100 })
   email: string;
+  @Column({ type: 'varchar', length: 100, default: '' })
+  image_url: string;
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   register_date: Date;
   constructor(partial: Partial<Professor>) {
