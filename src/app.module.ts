@@ -10,6 +10,8 @@ import { DebtModule } from './modules/debt/debt.module';
 import { InstallmentModule } from './modules/installment/installment.module';
 import { PlanModule } from './modules/plan/plan.module';
 import { ProfessorModule } from './modules/professor/professor.module';
+import { ClassroomModule } from './modules/classroom/classroom.module';
+import { BuildingModule } from './modules/building/building.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -29,6 +31,8 @@ const ENV = process.env.NODE_ENV;
     InstallmentModule,
     PlanModule,
     ProfessorModule,
+    BuildingModule,
+    ClassroomModule,
   ],
   controllers: [AppController],
   providers: [AppService],
