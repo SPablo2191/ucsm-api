@@ -12,6 +12,7 @@ import { PlanModule } from './modules/plan/plan.module';
 import { ProfessorModule } from './modules/professor/professor.module';
 import { ClassroomModule } from './modules/classroom/classroom.module';
 import { BuildingModule } from './modules/building/building.module';
+import { SemesterModule } from './modules/semester/semester.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -33,6 +34,7 @@ const ENV = process.env.NODE_ENV;
     ProfessorModule,
     BuildingModule,
     ClassroomModule,
+    SemesterModule,
   ],
   controllers: [AppController],
   providers: [AppService],

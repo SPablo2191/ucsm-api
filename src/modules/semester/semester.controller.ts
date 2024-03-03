@@ -1,8 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SemesterService } from './semester.service';
 import { CreateSemesterDto } from './dto/create-semester.dto';
 import { UpdateSemesterDto } from './dto/update-semester.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Semester')
 @Controller('semester')
 export class SemesterController {
   constructor(private readonly semesterService: SemesterService) {}
@@ -19,16 +28,19 @@ export class SemesterController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.semesterService.findOne(+id);
+    return this.semesterService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSemesterDto: UpdateSemesterDto) {
-    return this.semesterService.update(+id, updateSemesterDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateSemesterDto: UpdateSemesterDto,
+  ) {
+    return this.semesterService.update(id, updateSemesterDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.semesterService.remove(+id);
+    return this.semesterService.delete(id);
   }
 }
