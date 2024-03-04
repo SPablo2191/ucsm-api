@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { Building } from 'src/modules/building/entities/building.entity';
+import { Commission } from 'src/modules/commission/entities/commission.entity';
 
 export class CreateClassroomDto {
   @ApiProperty({
@@ -21,6 +22,10 @@ export class CreateClassroomDto {
   @ApiProperty({ description: 'Building associated with the classroom' })
   @Type(() => Building)
   building: Building;
+  @ApiProperty({ description: 'Commissions associated with the classroom' })
+  @ValidateNested({ each: true })
+  @Type(() => Commission)
+  commissions: Commission[];
   constructor(partial: Partial<CreateClassroomDto>) {
     Object.assign(this, partial);
   }
