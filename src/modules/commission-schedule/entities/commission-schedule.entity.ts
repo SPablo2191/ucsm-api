@@ -10,4 +10,7 @@ export class CommissionSchedule {
   end_time: string;
   @Column({ type: 'enum', enum: Days, default: Days.MONDAY })
   day: string;
+  constructor(partial: Partial<CommissionSchedule>) {
+    Object.assign(this, partial);
+  }
 }
