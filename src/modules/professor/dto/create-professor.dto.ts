@@ -1,11 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
   IsDateString,
   IsEmail,
   IsNotEmpty,
   IsString,
   IsUUID,
+  ValidateNested,
 } from 'class-validator';
+import { Commission } from 'src/modules/commission/entities/commission.entity';
 
 export class CreateProfessorDto {
   @ApiProperty({
@@ -69,7 +72,10 @@ export class CreateProfessorDto {
   })
   @IsDateString()
   register_date: Date;
-
+  @ApiProperty({ description: 'Commissions associated with a professor' })
+  @ValidateNested({ each: true })
+  @Type(() => Commission)
+  commissions: Commission[];
   constructor(partial: Partial<CreateProfessorDto>) {
     Object.assign(this, partial);
   }
