@@ -26,4 +26,7 @@ export class CreateCommissionDto {
   @Type(() => CommissionSchedule)
   @ValidateNested()
   commission_schedule: CommissionSchedule;
+  constructor(partial: Partial<CreateCommissionDto>) {
+    Object.assign(this, partial);
+  }
 }
