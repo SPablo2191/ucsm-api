@@ -1,8 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CommissionService } from './commission.service';
 import { CreateCommissionDto } from './dto/create-commission.dto';
 import { UpdateCommissionDto } from './dto/update-commission.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Commission')
 @Controller('commission')
 export class CommissionController {
   constructor(private readonly commissionService: CommissionService) {}
@@ -19,16 +28,19 @@ export class CommissionController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.commissionService.findOne(+id);
+    return this.commissionService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommissionDto: UpdateCommissionDto) {
-    return this.commissionService.update(+id, updateCommissionDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateCommissionDto: UpdateCommissionDto,
+  ) {
+    return this.commissionService.update(id, updateCommissionDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.commissionService.remove(+id);
+    return this.commissionService.delete(id);
   }
 }
