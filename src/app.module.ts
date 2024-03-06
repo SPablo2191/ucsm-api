@@ -13,6 +13,8 @@ import { ProfessorModule } from './modules/professor/professor.module';
 import { ClassroomModule } from './modules/classroom/classroom.module';
 import { BuildingModule } from './modules/building/building.module';
 import { SemesterModule } from './modules/semester/semester.module';
+import { CommissionModule } from './modules/commission/commission.module';
+import { CommissionScheduleModule } from './modules/commission-schedule/commission-schedule.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -35,6 +37,8 @@ const ENV = process.env.NODE_ENV;
     BuildingModule,
     ClassroomModule,
     SemesterModule,
+    CommissionScheduleModule,
+    CommissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
