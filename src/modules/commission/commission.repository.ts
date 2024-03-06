@@ -16,8 +16,8 @@ export class CommissionRepository
     return this.itemsRepository.find();
   }
   create(item: Commission): Promise<Commission> {
-    const newBuilding = this.mapper.dtoToEntity(item);
-    return this.itemsRepository.save(newBuilding);
+    const newCommision = this.mapper.dtoToEntity(item);
+    return this.itemsRepository.save(newCommision);
   }
   getById(id: string): Promise<Commission> {
     return this.itemsRepository.findOne({ where: { id: id } });
