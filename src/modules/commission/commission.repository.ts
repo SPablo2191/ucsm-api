@@ -12,27 +12,25 @@ export class CommissionRepository
     private itemsRepository: Repository<Commission>,
     private mapper: CommissionMapper,
   ) {}
-  getAll(): Promise<(Commission | UpdateCommissionDto)[]> {
+  getAll(): Promise<Commission[]> {
     return this.itemsRepository.find();
   }
-  create(
-    item: Commission | UpdateCommissionDto,
-  ): Promise<Commission | UpdateCommissionDto> {
+  create(item: Commission): Promise<Commission> {
     const newBuilding = this.mapper.dtoToEntity(item);
     return this.itemsRepository.save(newBuilding);
   }
-  getById(id: string): Promise<Commission | UpdateCommissionDto> {
+  getById(id: string): Promise<Commission> {
     return this.itemsRepository.findOne({ where: { id: id } });
   }
   update(
     id: string,
     item: Commission | UpdateCommissionDto,
-  ): Promise<Commission | UpdateCommissionDto> {
+  ): Promise<Commission> {
     item.id = id;
     const updateCommision = this.mapper.dtoToEntity(item);
     return this.itemsRepository.save(updateCommision);
   }
-  delete(id: string): Promise<Commission | UpdateCommissionDto> {
+  delete(id: string): Promise<Commission> {
     return this.itemsRepository.findOne({ where: { id: id } }).then((debt) => {
       return this.itemsRepository.remove(debt);
     });

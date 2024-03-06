@@ -1,26 +1,44 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCommissionDto } from './dto/create-commission.dto';
 import { UpdateCommissionDto } from './dto/update-commission.dto';
+import { BaseService } from 'src/core/services/base.interface.service';
+import { CommissionRepository } from './commission.repository';
+import { CommissionMapper } from './commission.mapper';
+import { Commission } from './entities/commission.entity';
 
 @Injectable()
-export class CommissionService {
-  create(createCommissionDto: CreateCommissionDto) {
-    return 'This action adds a new commission';
+export class CommissionService
+  implements BaseService<CreateCommissionDto | UpdateCommissionDto>
+{
+  constructor(
+    private itemsRepository: CommissionRepository,
+    private mapper: CommissionMapper,
+  ) {}
+  async findAll(): Promise<(CreateCommissionDto | UpdateCommissionDto)[]> {
+    const items: Commission[] = await this.itemsRepository.getAll();
+    return items.map((record) => this.mapper.entityToDto(record));
   }
-
-  findAll() {
-    return `This action returns all commission`;
+  async create(
+    item: CreateCommissionDto,
+  ): Promise<CreateCommissionDto | UpdateCommissionDto> {
+    const newItem: Commission = await this.itemsRepository.create(item);
+    return this.mapper.entityToDto(newItem);
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} commission`;
+  async findOne(
+    id: string,
+  ): Promise<CreateCommissionDto | UpdateCommissionDto> {
+    const item: Commission = await this.itemsRepository.getById(id);
+    return this.mapper.entityToDto(item);
   }
-
-  update(id: number, updateCommissionDto: UpdateCommissionDto) {
-    return `This action updates a #${id} commission`;
+  async update(
+    id: string,
+    item: UpdateCommissionDto,
+  ): Promise<UpdateCommissionDto> {
+    const updateItem = await this.itemsRepository.update(id, item);
+    return this.mapper.entityToDto(updateItem);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} commission`;
+  async delete(id: string): Promise<CreateCommissionDto | UpdateCommissionDto> {
+    await this.itemsRepository.delete(id);
+    return this.findOne(id);
   }
 }
