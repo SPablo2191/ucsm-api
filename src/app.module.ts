@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseConfigService } from './config/database-config/database-config.service';
-import * as dotenv from 'dotenv';
 import { StudentModule } from './modules/student/student.module';
 import { DebtModule } from './modules/debt/debt.module';
 import { InstallmentModule } from './modules/installment/installment.module';
@@ -15,6 +14,8 @@ import { BuildingModule } from './modules/building/building.module';
 import { SemesterModule } from './modules/semester/semester.module';
 import { CommissionModule } from './modules/commission/commission.module';
 import { CommissionScheduleModule } from './modules/commission-schedule/commission-schedule.module';
+import { AcademicProgramModule } from './modules/academic-program/academic-program.module';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -39,6 +40,7 @@ const ENV = process.env.NODE_ENV;
     SemesterModule,
     CommissionScheduleModule,
     CommissionModule,
+    AcademicProgramModule,
   ],
   controllers: [AppController],
   providers: [AppService],
