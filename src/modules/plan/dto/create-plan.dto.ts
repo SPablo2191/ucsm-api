@@ -1,5 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+  ValidateNested,
+} from 'class-validator';
+import { CreateAcademicProgramDto } from 'src/modules/academic-program/dto/create-academic-program.dto';
 
 export class CreatePlanDto {
   @ApiProperty({
@@ -31,6 +39,10 @@ export class CreatePlanDto {
   })
   @IsDateString()
   register_date: Date;
+  @ApiProperty({ description: 'Academic Programs associated with the Plan' })
+  @ValidateNested({ each: true })
+  @Type(() => CreateAcademicProgramDto)
+  academic_programs: CreateAcademicProgramDto[];
   constructor(partial: Partial<CreatePlanDto>) {
     Object.assign(this, partial);
   }
