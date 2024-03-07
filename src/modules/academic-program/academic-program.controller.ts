@@ -1,11 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AcademicProgramService } from './academic-program.service';
 import { CreateAcademicProgramDto } from './dto/create-academic-program.dto';
 import { UpdateAcademicProgramDto } from './dto/update-academic-program.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Academic Program')
 @Controller('academic-program')
 export class AcademicProgramController {
-  constructor(private readonly academicProgramService: AcademicProgramService) {}
+  constructor(
+    private readonly academicProgramService: AcademicProgramService,
+  ) {}
 
   @Post()
   create(@Body() createAcademicProgramDto: CreateAcademicProgramDto) {
@@ -19,16 +30,19 @@ export class AcademicProgramController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.academicProgramService.findOne(+id);
+    return this.academicProgramService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAcademicProgramDto: UpdateAcademicProgramDto) {
-    return this.academicProgramService.update(+id, updateAcademicProgramDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateAcademicProgramDto: UpdateAcademicProgramDto,
+  ) {
+    return this.academicProgramService.update(id, updateAcademicProgramDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.academicProgramService.remove(+id);
+    return this.academicProgramService.delete(id);
   }
 }
