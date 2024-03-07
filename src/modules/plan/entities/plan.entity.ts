@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { AcademicProgram } from 'src/modules/academic-program/entities/academic-program.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Plan {
   @PrimaryGeneratedColumn('uuid')
@@ -11,6 +12,8 @@ export class Plan {
   name: string;
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   register_date: Date;
+  @OneToMany(() => AcademicProgram, (academicProgram) => academicProgram.plan)
+  academic_programs: AcademicProgram[];
   constructor(partial: Partial<Plan>) {
     Object.assign(this, partial);
   }
