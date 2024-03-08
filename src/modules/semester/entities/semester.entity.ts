@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Subject } from 'src/modules/subject/entities/subject.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Semester {
@@ -10,7 +11,8 @@ export class Semester {
   start_date: Date;
   @Column({ type: 'date' })
   end_date: Date;
-
+  @OneToMany(() => Subject, (subject) => subject.semester)
+  subjects: Subject[];
   constructor(partial: Partial<Semester>) {
     Object.assign(this, partial);
   }
