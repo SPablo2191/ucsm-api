@@ -17,6 +17,7 @@ import { CommissionScheduleModule } from './modules/commission-schedule/commissi
 import { AcademicProgramModule } from './modules/academic-program/academic-program.module';
 import * as dotenv from 'dotenv';
 import { SubjectModule } from './modules/subject/subject.module';
+import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -43,6 +44,7 @@ const ENV = process.env.NODE_ENV;
     CommissionModule,
     AcademicProgramModule,
     SubjectModule,
+    EnrollmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
