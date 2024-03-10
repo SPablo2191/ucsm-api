@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsUUID, IsString, IsNotEmpty } from 'class-validator';
+import { Plan } from 'src/modules/plan/entities/plan.entity';
 export class CreateAcademicProgramDto {
   @ApiProperty({
     description: 'ID of the Academic Program',
@@ -25,7 +26,7 @@ export class CreateAcademicProgramDto {
   code: string;
 
   @ApiProperty({ description: 'Associated plan for the academic program' })
-  @Type(() => Debt)
+  @Type(() => Plan)
   plan: Plan;
   constructor(partial: Partial<CreateAcademicProgramDto>) {
     Object.assign(this, partial);
