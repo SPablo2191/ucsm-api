@@ -6,6 +6,7 @@ import {
   IsUUID,
   ValidateNested,
 } from 'class-validator';
+import { Enrollment } from 'src/modules/enrollment/entities/enrollment.entity';
 import { Subject } from 'src/modules/subject/entities/subject.entity';
 
 export class CreateSubjectRegistrationDto {
@@ -42,6 +43,10 @@ export class CreateSubjectRegistrationDto {
   })
   @IsDateString()
   update_date: Date;
+  @ApiProperty({ description: 'Enrollment associate to subject registrations' })
+  @Type(() => Enrollment)
+  @ValidateNested()
+  enrollment: Enrollment;
   constructor(partial: Partial<CreateSubjectRegistrationDto>) {
     Object.assign(this, partial);
   }
