@@ -1,9 +1,18 @@
 import { AcademicProgram } from 'src/modules/academic-program/entities/academic-program.entity';
 import { Student } from 'src/modules/student/entities/student.entity';
 import { SubjectRegistration } from 'src/modules/subject-registration/entities/subject-registration.entity';
-import { Column, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
+import {
+  Column,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export class Enrollment {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   @ManyToOne(
     () => AcademicProgram,
     (academicProgram) => academicProgram.enrollments,
