@@ -8,6 +8,7 @@ import {
 } from 'class-validator';
 import { AcademicProgram } from 'src/modules/academic-program/entities/academic-program.entity';
 import { Student } from 'src/modules/student/entities/student.entity';
+import { SubjectRegistration } from 'src/modules/subject-registration/entities/subject-registration.entity';
 
 export class CreateEnrollmentDto {
   @ApiProperty({ description: 'ID of enrollment' })
@@ -18,6 +19,12 @@ export class CreateEnrollmentDto {
   @Type(() => AcademicProgram)
   @ValidateNested()
   academic_program: AcademicProgram;
+  @ApiProperty({
+    description: 'Subject registrations associate to subject registrations',
+  })
+  @Type(() => SubjectRegistration)
+  @ValidateNested()
+  subjectRegistrations: SubjectRegistration[];
 
   @ApiProperty({ description: 'Student associated with the enrollment' })
   @Type(() => Student)

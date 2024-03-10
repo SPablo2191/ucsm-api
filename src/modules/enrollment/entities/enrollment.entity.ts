@@ -27,6 +27,7 @@ export class Enrollment {
     () => SubjectRegistration,
     (subjectRegistration) => subjectRegistration.enrollment,
   )
+  subjectRegistrations: SubjectRegistration[];
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   register_date: Date;
 
@@ -36,7 +37,6 @@ export class Enrollment {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   update_date: Date;
-  subjectRegistrations: SubjectRegistration[];
   constructor(partial: Partial<Enrollment>) {
     Object.assign(this, partial);
   }
