@@ -1,3 +1,4 @@
+import { Enrollment } from 'src/modules/enrollment/entities/enrollment.entity';
 import { Plan } from 'src/modules/plan/entities/plan.entity';
 import { Subject } from 'src/modules/subject/entities/subject.entity';
 import {
@@ -20,6 +21,8 @@ export class AcademicProgram {
   plan: Plan;
   @OneToMany(() => Subject, (subject) => subject.academic_program)
   subjects: Subject[];
+  @OneToMany(() => Enrollment, (enrollment) => enrollment.academic_program)
+  enrollments: Enrollment[];
   constructor(partial: Partial<AcademicProgram>) {
     Object.assign(this, partial);
   }
