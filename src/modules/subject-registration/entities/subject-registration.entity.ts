@@ -1,3 +1,4 @@
+import { Enrollment } from 'src/modules/enrollment/entities/enrollment.entity';
 import { Subject } from 'src/modules/subject/entities/subject.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -21,6 +22,8 @@ export class SubjectRegistration {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   update_date: Date;
+  @ManyToOne(() => Enrollment, (enrollment) => enrollment.subjectRegistrations)
+  enrollment: Enrollment;
   constructor(partial: Partial<SubjectRegistration>) {
     Object.assign(this, partial);
   }
