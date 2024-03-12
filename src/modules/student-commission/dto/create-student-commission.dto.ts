@@ -6,16 +6,18 @@ import { SubjectRegistration } from 'src/modules/subject-registration/entities/s
 
 export class CreateStudentCommissionDto {
   @ApiProperty({
-    description: 'ID of the installment',
+    description: 'ID of the StudentCommission',
     example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @IsUUID()
   id: string;
-  @ApiProperty({ description: 'Commission associated with the isntallment' })
+  @ApiProperty({
+    description: 'Commission associated with the StudentCommission',
+  })
   @Type(() => Commission)
   commission: Commission;
   @ApiProperty({
-    description: 'SubjectRegistration associated with the isntallment',
+    description: 'SubjectRegistration associated with the StudentCommission',
   })
   @Type(() => SubjectRegistration)
   subject_registration: SubjectRegistration;
