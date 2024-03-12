@@ -17,7 +17,7 @@ export class CreateSubjectRegistrationDto {
   @ApiProperty({ description: 'Subject associate to subject registrations' })
   @Type(() => Subject)
   @ValidateNested()
-  academic_program: Subject;
+  subject: Subject;
   @ApiProperty({
     description: 'Final score of the subject registration',
     required: false,
