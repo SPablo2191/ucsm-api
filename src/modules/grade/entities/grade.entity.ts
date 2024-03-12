@@ -12,7 +12,7 @@ export class Grade {
   )
   student_commission: StudentCommission;
   @Column({ type: 'decimal', precision: 5, scale: 2, nullable: true })
-  final_score: number;
+  score: number;
   @Column({ type: 'enum', enum: Phase, default: Phase.FIRST })
   phase: string;
   constructor(partial: Partial<Grade>) {

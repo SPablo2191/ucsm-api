@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateGradeDto } from './dto/create-grade.dto';
 import { UpdateGradeDto } from './dto/update-grade.dto';
+import { BaseService } from 'src/core/services/base.interface.service';
+import { GradeRepository } from './grade.repository';
+import { GradeMapper } from './grade.mapper';
+import { Grade } from './entities/grade.entity';
 
 @Injectable()
-export class GradeService {
-  create(createGradeDto: CreateGradeDto) {
-    return 'This action adds a new grade';
+export class GradeService
+  implements BaseService<CreateGradeDto | UpdateGradeDto>
+{
+  constructor(
+    private itemsRepository: GradeRepository,
+    private mapper: GradeMapper,
+  ) {}
+  async findAll(): Promise<(CreateGradeDto | UpdateGradeDto)[]> {
+    const items: Grade[] = await this.itemsRepository.getAll();
+    return items.map((record) => this.mapper.entityToDto(record));
   }
-
-  findAll() {
-    return `This action returns all grade`;
+  async create(item: CreateGradeDto): Promise<CreateGradeDto | UpdateGradeDto> {
+    const newItem: Grade = await this.itemsRepository.create(item);
+    return this.mapper.entityToDto(newItem);
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} grade`;
+  async findOne(id: string): Promise<CreateGradeDto | UpdateGradeDto> {
+    const item: Grade = await this.itemsRepository.getById(id);
+    return this.mapper.entityToDto(item);
   }
-
-  update(id: number, updateGradeDto: UpdateGradeDto) {
-    return `This action updates a #${id} grade`;
+  async update(id: string, item: UpdateGradeDto): Promise<UpdateGradeDto> {
+    const updateItem = await this.itemsRepository.update(id, item);
+    return this.mapper.entityToDto(updateItem);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} grade`;
+  async delete(id: string): Promise<CreateGradeDto | UpdateGradeDto> {
+    await this.itemsRepository.delete(id);
+    return this.findOne(id);
   }
 }

@@ -17,6 +17,11 @@ export class CreateGradeDto {
   @Type(() => StudentCommission)
   student_commission: StudentCommission;
   @ApiProperty({
+    description: 'Score of the Grade',
+    example: '20',
+  })
+  score: number;
+  @ApiProperty({
     description: 'phase of grades',
     enum: Phase,
     default: Phase.FIRST,
