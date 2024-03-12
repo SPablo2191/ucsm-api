@@ -1,6 +1,13 @@
 import { Enrollment } from 'src/modules/enrollment/entities/enrollment.entity';
+import { StudentCommission } from 'src/modules/student-commission/entities/student-commission.entity';
 import { Subject } from 'src/modules/subject/entities/subject.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class SubjectRegistration {
@@ -24,6 +31,11 @@ export class SubjectRegistration {
   update_date: Date;
   @ManyToOne(() => Enrollment, (enrollment) => enrollment.subjectRegistrations)
   enrollment: Enrollment;
+  @OneToMany(
+    () => StudentCommission,
+    (studentCommission) => studentCommission.subject_registration,
+  )
+  student_commissions: StudentCommission[];
   constructor(partial: Partial<SubjectRegistration>) {
     Object.assign(this, partial);
   }
