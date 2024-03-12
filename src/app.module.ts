@@ -18,6 +18,7 @@ import { AcademicProgramModule } from './modules/academic-program/academic-progr
 import * as dotenv from 'dotenv';
 import { SubjectModule } from './modules/subject/subject.module';
 import { EnrollmentModule } from './modules/enrollment/enrollment.module';
+import { SubjectRegistrationModule } from './modules/subject-registration/subject-registration.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -45,6 +46,7 @@ const ENV = process.env.NODE_ENV;
     AcademicProgramModule,
     SubjectModule,
     EnrollmentModule,
+    SubjectRegistrationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
