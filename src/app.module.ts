@@ -20,6 +20,7 @@ import { SubjectModule } from './modules/subject/subject.module';
 import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 import { SubjectRegistrationModule } from './modules/subject-registration/subject-registration.module';
 import { StudentCommissionModule } from './modules/student-commission/student-commission.module';
+import { GradeModule } from './modules/grade/grade.module';
 
 dotenv.config();
 const ENV = process.env.NODE_ENV;
@@ -49,6 +50,7 @@ const ENV = process.env.NODE_ENV;
     EnrollmentModule,
     SubjectRegistrationModule,
     StudentCommissionModule,
+    GradeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
